@@ -13,7 +13,7 @@ const app = express()
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
-app.use('/api/user', usersRoutes)
+app.use('/api/users', usersRoutes)
 
 app.use(notFound)
 app.use(errorHandler)
