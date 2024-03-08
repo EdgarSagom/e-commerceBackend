@@ -9,3 +9,4 @@ e-commerceBackend create with Node.js Express MongoDB Mongoose JWT bcrypt
 - npm i colors
 - npm i express-async-handler
 - npm i jsonwebtoken
+- npm i cookie-parser
