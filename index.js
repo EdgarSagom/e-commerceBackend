@@ -11,6 +11,7 @@ const usersRoutes = require('./routes/usersRoutes')
 const productsRoutes = require('./routes/productsRoutes')
 const categoriesRoutes = require('./routes/categoriesRoutes')
 const brandsRoutes = require('./routes/brandsRoutes')
+const couponsRoutes = require('./routes/couponsRoutes')
 
 dbConnect()
 
@@ -25,6 +26,7 @@ app.use('/api/users', usersRoutes)
 app.use('/api/products', productsRoutes)
 app.use('/api/category', categoriesRoutes)
 app.use('/api/brands', brandsRoutes)
+app.use('/api/coupons', couponsRoutes)
 
 app.use(notFound)
 app.use(errorHandler)
