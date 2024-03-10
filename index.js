@@ -4,10 +4,12 @@ const dotenv = require('dotenv').config()
 const PORT = process.env.PORT || 4000
 const dbConnect = require('./config/dbConnect')
 const { notFound, errorHandler } = require('./middleware/errorMiddleware')
-const usersRoutes = require('./routes/usersRoutes')
-const productsRoutes = require('./routes/productsRoutes')
 const cookieParser = require('cookie-parser')
 const morgan = require('morgan')
+
+const usersRoutes = require('./routes/usersRoutes')
+const productsRoutes = require('./routes/productsRoutes')
+const categoriesRoutes = require('./routes/categoriesRoutes')
 
 dbConnect()
 
@@ -20,6 +22,7 @@ app.use(morgan('dev'))
 
 app.use('/api/users', usersRoutes)
 app.use('/api/products', productsRoutes)
+app.use('/api/category', categoriesRoutes)
 
 app.use(notFound)
 app.use(errorHandler)
