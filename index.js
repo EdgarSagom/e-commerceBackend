@@ -12,6 +12,7 @@ const productsRoutes = require('./routes/productsRoutes')
 const categoriesRoutes = require('./routes/categoriesRoutes')
 const brandsRoutes = require('./routes/brandsRoutes')
 const couponsRoutes = require('./routes/couponsRoutes')
+const uploadRoutes = require('./routes/uploadRoutes')
 
 dbConnect()
 
@@ -27,6 +28,7 @@ app.use('/api/products', productsRoutes)
 app.use('/api/category', categoriesRoutes)
 app.use('/api/brands', brandsRoutes)
 app.use('/api/coupons', couponsRoutes)
+app.use('/api/upload', uploadRoutes)
 
 app.use(notFound)
 app.use(errorHandler)

@@ -12,3 +12,4 @@ e-commerceBackend create with Node.js Express MongoDB Mongoose JWT bcrypt
 - npm i cookie-parser
 - npm i morgan
 - npm i slugify
+- npm i multer sharp cloudinary
