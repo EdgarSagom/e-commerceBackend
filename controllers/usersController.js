@@ -50,6 +50,37 @@ const loginUser = asyncHandler(async(req, res) => {
     }
 })
 
+// login a admin
+const loginAdmin = asyncHandler(async (req, res) => {
+    const {email, password} = req.body
+    const findAdmin = await User.findOne({ email })
+    if (findAdmin.role !== 'admin') throw new Error('Not Authorised')
+    if (findAdmin && (await findAdmin.isPasswordMatched(password))) {
+        const refreshToken = await generateRefreshToken(findAdmin?._id)
+        const updateAdmin = await User.findByIdAndUpdate(findAdmin.id, {
+            refreshToken: refreshToken
+        },{
+            new: true
+        })
+
+        res.cookie('refreshToken', refreshToken, {
+            httpOnly: true,
+            maxAge: 72 * 60 * 60 * 1000
+        })
+        
+        res.json({
+            _id: findAdmin?.id,
+            firstname: findAdmin?.firstname,
+            lastname: findAdmin?.lastname,
+            email: findAdmin?.email,
+            mobile: findAdmin?.mobile,
+            token: generateToken(findAdmin?.id)
+        })
+    } else {
+        throw new Error('Invalid credentials')
+    }
+})
+
 // Handle refreshToken
 const handleRefreshToken = asyncHandler(async (req, res) => {
     const cookie = req.cookies
@@ -110,6 +141,23 @@ const updateUser = asyncHandler(async (req, res) => {
             new: true
         })
         res.json(upUser)
+    } catch (error) {
+        throw new Error(error)
+    }
+})
+
+// saveAddress a user
+const saveAddress = asyncHandler(async (req, res, next) => {
+    const { _id } = req.user
+    validateMongoDbId(_id)
+
+    try {
+        const updateAddress = await User.findByIdAndUpdate(_id, {
+            address: req?.body?.address
+        },{
+            new: true
+        })
+        res.json(updateAddress)
     } catch (error) {
         throw new Error(error)
     }
@@ -187,6 +235,18 @@ const unblockedUser = asyncHandler(async (req, res) => {
     }
 })
 
+// whistlist a user
+const getWishlist = asyncHandler(async (req, res) => {
+    const { _id } = req.user
+
+    try {
+        const findUser = await User.findById(_id).populate('wishlist')
+        res.json(findUser)
+    } catch (error) {
+        throw new Error(error)
+    }
+})
+
 module.exports = {
     createUser,
     loginUser,
@@ -197,5 +257,8 @@ module.exports = {
     blockedUser,
     unblockedUser,
     handleRefreshToken,
-    logout
+    logout,
+    loginAdmin,
+    getWishlist,
+    saveAddress
 }
