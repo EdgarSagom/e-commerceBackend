@@ -1,7 +1,6 @@
 const mongoose = require('mongoose')
 
-// Declare the Schema of the Mongo model
-var brandSchema = new mongoose.Schema({
+const brandSchema = mongoose.Schema({
     title:{
         type: String,
         required: true,
@@ -12,5 +11,4 @@ var brandSchema = new mongoose.Schema({
     timestamps: true
 });
 
-//Export the model
 module.exports = mongoose.model('Brand', brandSchema)

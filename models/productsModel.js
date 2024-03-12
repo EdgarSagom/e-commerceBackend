@@ -1,7 +1,6 @@
 const mongoose = require('mongoose')
 
-// Declare the Schema of the Mongo model
-var productSchema = new mongoose.Schema({
+const productSchema = mongoose.Schema({
     title: {
         type: String,
         required: true,
@@ -59,5 +58,4 @@ var productSchema = new mongoose.Schema({
     timestamps: true
 });
 
-//Export the model
 module.exports = mongoose.model('Product', productSchema);

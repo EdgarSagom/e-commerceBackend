@@ -1,7 +1,6 @@
 const mongoose = require('mongoose')
 
-// Declare the Schema of the Mongo model
-var orderSchema = new mongoose.Schema({
+const orderSchema = mongoose.Schema({
     products: [{
         product: {
             type: mongoose.Schema.Types.ObjectId,
@@ -31,5 +30,4 @@ var orderSchema = new mongoose.Schema({
     timestamps: true
 })
 
-//Export the model
 module.exports = mongoose.model('Order', orderSchema)
