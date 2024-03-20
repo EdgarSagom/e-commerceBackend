@@ -17,7 +17,7 @@ API deployed at: https://itchy-vest-colt.cyclic.app
 - Applycoupon (requires user JWT): POST https://itchy-vest-colt.cyclic.app/api/users/cart/applycoupon
 - Create Order (requires user JWT): POST https://itchy-vest-colt.cyclic.app/api/users/cart/cash-order
 
-- All Users: GET https://itchy-vest-colt.cyclic.app/api/users/all
+- All Users (requires admin JWT): GET https://itchy-vest-colt.cyclic.app/api/users/all
 - Order (requires user JWT): GET https://itchy-vest-colt.cyclic.app/api/users/orders
 - All Orders (requires admin JWT): GET https://itchy-vest-colt.cyclic.app/api/users/allorders
 - Refresh token: GET https://itchy-vest-colt.cyclic.app/api/users/refresh
