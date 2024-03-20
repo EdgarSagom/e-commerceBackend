@@ -10,7 +10,7 @@ router.post('/cart', protect, cartUser)
 router.post('/cart/applycoupon', protect, applyCoupon)
 router.post('/cart/cash-order', protect, createOrder)
 
-router.get('/all', getAllUsers)
+router.get('/all', protect, isAdmin, getAllUsers)
 router.get('/orders', protect, getOrders)
 router.get('/allorders', protect, isAdmin, getAllOrders)
 router.get('/refresh', handleRefreshToken)
